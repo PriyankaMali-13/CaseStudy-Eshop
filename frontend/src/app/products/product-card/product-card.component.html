@@ -1,0 +1,51 @@
+<div div class="card mb-2" style="width: 16rem; height: 22rem">
+  <div style="max-width: 100%; max-height: 50%; display: block">
+    <img
+      src="{{ product.url }}"
+      class="img-fluid card-img-top"
+      alt="..."
+      style="
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        object-fit: contain;
+      "
+    />
+    <div class="card-body justify-content-center align-items-end">
+      <h6 class="card-title">{{ product.name }}</h6>
+      <p class="card-text">
+        <b>${{ product.price }}</b>
+      </p>
+    </div>
+    <div class="card-footer p-0">
+      <a
+        *ngIf="!quantity; else cardQuantity"
+        class="btn-block btn btn-block btn-light"
+        (click)="addToCart()"
+      >
+        Add to cart</a
+      >
+      <ng-template #cardQuantity>
+        <div class="row no-gutters">
+          <div class="col-2">
+            <button
+              (click)="minusQuantity()"
+              class=" btn-block btn btn-block btn-secondary"
+            >
+              -
+            </button>
+          </div>
+          <div class="col text-center">{{ quantity }}</div>
+          <div class="col-2">
+            <button
+              (click)="plusQuantity()"
+              class="btn-block btn btn-block btn-secondary"
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

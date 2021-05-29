@@ -1,0 +1,29 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of allCartProducts">
+      <td>
+        <img
+          class="bd-placeholder-img  p-2"
+          height="100px"
+          src="{{ product.url }}"
+        />
+      </td>
+      <td>
+        <p class="card-text">{{ product.name }}</p>
+      </td>
+      <td>
+        <strong>${{ product.price }}</strong>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <app-footer></app-footer>
+</div>
