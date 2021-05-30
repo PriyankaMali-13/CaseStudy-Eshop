@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart/cart.component';
+import { CovidCareComponent } from './covid-care/covid-care.component';
 import { HomeComponent } from './home/home/home.component';
 import { ProductComponent } from './products/product/product.component';
 
@@ -15,11 +16,11 @@ const routes: Routes = [
     else not*/
   //{ path: 'product', component: ProductComponent, canActivate: [UserGuard] },
   { path: 'home', component: HomeComponent },
-  //{ path: 'store', component: StoreComponent },
   { path: 'product', component: ProductComponent },
   { path: 'cart', component: CartComponent, canActivate: [UserGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'covid', component: CovidCareComponent },
 ];
 
 @NgModule({

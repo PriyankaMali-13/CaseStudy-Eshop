@@ -65,7 +65,7 @@ app.get("/products", (req, res) => {
 });
 
 //list product by id
-app.get("/product/:id", (req, res) => {
+app.get("/products/:id", (req, res) => {
 	Product.findById(req.params.id)
 		.then((product) => {
 			// show product

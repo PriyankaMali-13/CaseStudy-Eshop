@@ -1,29 +1,77 @@
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Image</th>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of allCartProducts">
-      <td>
+<div
+  class="container p-3 m-3 mx-auto"
+  *ngIf="cartItems.length != 0; else noItems"
+>
+  <h1 class="display-4">Cart</h1>
+  <hr />
+  <table class="table mx-auto">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Image</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <img
+            src="{{ item.product.url }}"
+            class="rounded"
+            alt="..."
+            height="80px"
+          />
+        </td>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹ {{ item.product.price }}</td>
+        <td>₹{{ item.quantity * item.product.price }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="5">Total</th>
+        <th>{{ total }}</th>
+      </tr>
+    </tfoot>
+  </table>
+  <hr />
+  <hr />
+</div>
+
+<ng-template #noItems>
+  <div class="mt-4 pt-4">
+    <div class="jumbotron bg-white border container p-4 mx-auto">
+      <h1 class="display-4">Your Cart is Empty
         <img
-          class="bd-placeholder-img  p-2"
-          height="100px"
-          src="{{ product.url }}"
-        />
-      </td>
-      <td>
-        <p class="card-text">{{ product.name }}</p>
-      </td>
-      <td>
-        <strong>${{ product.price }}</strong>
-      </td>
-    </tr>
-  </tbody>
-</table>
+            class="m-4"
+            src="assets/carts.png"
+            alt=""
+            width="72"
+            height="72"
+          />
+      </h1>
+      
+      <p class="lead">Go to Products Store to Add Items in the Cart</p>
+      <hr class="my-4" />
+      <p style="text-align: justify;
+  text-justify: inter-word;">
+        E-commerce is revolutionizing the way we all shop in India. Why do you
+        want to hop from one store to another in search of the latest phone when
+        you can find it on the Internet in a single click? Not only mobiles.
+        <b>E-shop</b> houses everything you can possibly imagine, from trending
+        electronics like laptops, tablets, smartphones, and mobile accessories
+        to in-vogue fashion staples like shoes, clothing and lifestyle
+        accessories; from modern furniture like sofa sets, dining tables, and
+        wardrobes to appliances that make your life easy.
+      </p>
+    </div>
+  </div>
+</ng-template>
 <div>
   <app-footer></app-footer>
 </div>

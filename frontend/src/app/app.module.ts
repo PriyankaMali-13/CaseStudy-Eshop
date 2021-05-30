@@ -22,6 +22,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductComponent } from './products/product/product.component';
 import { StoreComponent } from './products/store/store.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
+import { CovidCareComponent } from './covid-care/covid-care.component';
 //import { StoreComponent } from './products/store/store.component';
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
     ProductComponent,
     StoreComponent,
     ProductCardComponent,
+    CovidCareComponent,
     // StoreComponent,
   ],
   imports: [
