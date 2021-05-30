@@ -26,6 +26,7 @@ Angular CLI - https://angular.io/cli</br>
 
 <p>User Microservice port no : 3000</p>
 <p>Product Microservice port no : 4000</p>
+<p>Cart Service is mannaged using local storage of browser</p>
 
 
 
