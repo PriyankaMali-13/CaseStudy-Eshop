@@ -37,10 +37,11 @@ export class CartComponent implements OnInit {
         let observables = [];
         for (let id in cart) {
           console.log(id);
+          console.log(cart[id]);
           observables.push(
             this.productService.getProductById(id).pipe(
               map((product) => {
-                this.total += (product.price + cart[id]);
+                this.total += product.price * cart[id];
                 let item: Cartitem = {
                   product: product,
                   quantity: cart[id],
