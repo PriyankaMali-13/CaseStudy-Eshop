@@ -2,7 +2,7 @@
   class="container p-3 m-3 mx-auto"
   *ngIf="cartItems.length != 0; else noItems"
 >
-  <h1 class="display-4">Cart</h1>
+  <h1 class="display-4">Cart Items</h1>
   <hr />
   <table class="table mx-auto">
     <thead>
@@ -35,7 +35,7 @@
     <tfoot>
       <tr>
         <th colspan="5">Total</th>
-        <th>{{ total }}</th>
+        <th>₹ {{ total }}</th>
       </tr>
     </tfoot>
   </table>
@@ -46,20 +46,14 @@
 <ng-template #noItems>
   <div class="mt-4 pt-4">
     <div class="jumbotron bg-white border container p-4 mx-auto">
-      <h1 class="display-4">Your Cart is Empty
-        <img
-            class="m-4"
-            src="assets/carts.png"
-            alt=""
-            width="72"
-            height="72"
-          />
+      <h1 class="display-4">
+        Your Cart is Empty
+        <img class="m-4" src="assets/carts.png" alt="cart image" width="72" height="72" />
       </h1>
-      
+
       <p class="lead">Go to Products Store to Add Items in the Cart</p>
       <hr class="my-4" />
-      <p style="text-align: justify;
-  text-justify: inter-word;">
+      <p style="text-align: justify; text-justify: inter-word">
         E-commerce is revolutionizing the way we all shop in India. Why do you
         want to hop from one store to another in search of the latest phone when
         you can find it on the Internet in a single click? Not only mobiles.
@@ -72,6 +66,7 @@
     </div>
   </div>
 </ng-template>
+
 <div>
   <app-footer></app-footer>
 </div>
