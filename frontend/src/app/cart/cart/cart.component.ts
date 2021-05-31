@@ -4,6 +4,7 @@ import { Product } from 'src/app/models/products';
 import { ProductService } from 'src/app/products/product.service';
 import { CartService } from '../cart.service';
 import { map } from 'rxjs/operators';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 interface Cartitem {
   product: Product;
@@ -20,10 +21,12 @@ export class CartComponent implements OnInit {
   cart: any = {};
   cartItems: Cartitem[] = [];
   total = 0;
+  modalRef!: BsModalRef;
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService
+    private productService: ProductService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +61,28 @@ export class CartComponent implements OnInit {
         });
       },
     });
+  }
+
+  //To open checkout form
+  openModal(form: any) {
+    this.modalRef = this.modalService.show(form, {
+      animated: true,
+      class: 'modal-lg',
+    });
+  }
+
+  //checkout
+  checkOut(evnt: Event, form: HTMLFormElement) {
+    evnt.preventDefault();
+    let firstName = (<HTMLInputElement>form.elements.namedItem('firstName')).value
+    let lastName = (<HTMLInputElement>form.elements.namedItem('lastName')).value;
+    let address = (<HTMLInputElement>form.elements.namedItem('address')).value;
+    console.log({
+      firstName,
+      lastName,
+      address
+    });
+    return false;
+    
   }
 }

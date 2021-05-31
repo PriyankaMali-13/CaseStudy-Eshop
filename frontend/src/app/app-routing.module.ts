@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart/cart.component';
 import { CovidCareComponent } from './covid-care/covid-care.component';
 import { HomeComponent } from './home/home/home.component';
+import { OrderComponent } from './orders/order/order.component';
 import { ProductComponent } from './products/product/product.component';
 
 import { LoginComponent } from './users/login/login.component';
@@ -16,11 +17,12 @@ const routes: Routes = [
     else not*/
   //{ path: 'product', component: ProductComponent, canActivate: [UserGuard] },
   { path: 'home', component: HomeComponent },
-  { path: 'product', component: ProductComponent },
+  { path: 'products', component: ProductComponent },
   { path: 'cart', component: CartComponent, canActivate: [UserGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'covid', component: CovidCareComponent },
+  { path: 'orders', component: OrderComponent },
 ];
 
 @NgModule({

@@ -23,6 +23,7 @@
     "ag-grid-community": "^25.2.1",
     "bootstrap": "^5.0.1",
     "ng-image-slider": "^2.8.0",
+    "ngx-bootstrap": "^6.2.0",
     "rxjs": "^6.6.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

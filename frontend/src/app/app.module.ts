@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -23,6 +25,7 @@ import { ProductComponent } from './products/product/product.component';
 import { StoreComponent } from './products/store/store.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { CovidCareComponent } from './covid-care/covid-care.component';
+import { OrderComponent } from './orders/order/order.component';
 //import { StoreComponent } from './products/store/store.component';
 
 @NgModule({
@@ -36,11 +39,12 @@ import { CovidCareComponent } from './covid-care/covid-care.component';
 
     FilterComponent,
     // ProductComponent,
-     FooterComponent,
+    FooterComponent,
     ProductComponent,
     StoreComponent,
     ProductCardComponent,
     CovidCareComponent,
+    OrderComponent,
     // StoreComponent,
   ],
   imports: [
@@ -49,6 +53,7 @@ import { CovidCareComponent } from './covid-care/covid-care.component';
     FormsModule,
     HttpClientModule,
     NgImageSliderModule,
+    ModalModule.forRoot(),
   ],
   providers: [
     UsersService,
