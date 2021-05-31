@@ -3,6 +3,7 @@ const express = require("express");
 const app = express(); // creating the instance of express
 const cors = require("cors");
 
+
 //Load body-parser(It is a middleware to receive data from req(req could be in form of html Forms,etc))
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -31,7 +32,7 @@ app.get("/", (req, res) => {
 });
 
 //create product
-app.post("/product", (req, res) => {
+/* app.post("/product", (req, res) => {
 	var newProduct = {
 		name: req.body.name,
 		url: req.body.url,
@@ -52,7 +53,7 @@ app.post("/product", (req, res) => {
 		});
 	res.send("A new product is created");
 });
-
+ */
 //list all product
 app.get("/products", (req, res) => {
 	Product.find()

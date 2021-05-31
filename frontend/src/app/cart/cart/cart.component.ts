@@ -5,6 +5,8 @@ import { ProductService } from 'src/app/products/product.service';
 import { CartService } from '../cart.service';
 import { map } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { OrderInfo, OrderService, ProductInfo } from 'src/app/orders/order.service';
+import { Router } from '@angular/router';
 
 interface Cartitem {
   product: Product;
@@ -26,7 +28,9 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private productService: ProductService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private orderService : OrderService,
+    private router : Router
   ) {}
 
   ngOnInit(): void {
@@ -77,11 +81,43 @@ export class CartComponent implements OnInit {
     let firstName = (<HTMLInputElement>form.elements.namedItem('firstName')).value
     let lastName = (<HTMLInputElement>form.elements.namedItem('lastName')).value;
     let address = (<HTMLInputElement>form.elements.namedItem('address')).value;
-    console.log({
+
+    //creating variable of type OrderInfo (Interface in order service)
+    let orderInfo: OrderInfo;
+    //craeting array of productInfos of type ProductInfo (Interface in product service)
+    //ProductInfo[] will basically contain price, id and quantity which we will get from cartitems
+    let productInfos : ProductInfo[] = [];
+    //Getting product from cartitems
+    this.cartItems.forEach(e=>{
+      productInfos.push({
+        price : e.product.price,
+        productId: e.product._id,
+        quantity: e.quantity
+      })
+    })
+    //send this data to server
+    orderInfo = {
+      address,
       firstName,
       lastName,
-      address
+      products : productInfos
+
+    }
+    console.log({
+      orderInfo
     });
+
+    this.orderService.placeOrder(orderInfo).subscribe({
+      next: (result) => {
+        this.modalRef.hide();
+        this.cartService.clearCart();
+        this.router.navigate(['/orders']);
+      },
+      error: (err) => {
+        console.log({ err: 'Cant place order' });
+      },
+    });
+
     return false;
     
   }

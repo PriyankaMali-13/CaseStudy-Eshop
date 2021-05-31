@@ -24,6 +24,9 @@ mongoose.connect(
 		}
 	}
 );
+app.get("/", (req, res) => {
+	res.send("Cart Service up and running");
+});
 
 //add to cart
 app.post("/add/cart", (req, res) => {
@@ -42,7 +45,9 @@ app.post("/add/cart", (req, res) => {
 			}
 		});
 	res.send("product added to cart");
-});
+}); 
+
+
 
 //list all product
 app.get("/cart", async (req, res) => {
