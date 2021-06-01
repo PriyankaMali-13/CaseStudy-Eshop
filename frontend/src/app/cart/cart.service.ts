@@ -31,8 +31,10 @@ export class CartService {
     return this._cartObservable;
   }
 
-  clearCart(){
-    localStorage.removeItem('cart')
+  //To clear cart
+  clearCart() {
+    localStorage.removeItem('cart');
+    this._cartObservable.next({});
   }
 
   addToCart(product: Product) {
@@ -72,6 +74,4 @@ export class CartService {
     this.writeCartDataToLocalStorage();
     this._cartObservable.next(this.cart);
   }
-
-  
 }

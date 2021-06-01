@@ -30,4 +30,5 @@ mongoose.model("Order", {
 		type: String,
 		default: "COD",
 	},
+	
 });

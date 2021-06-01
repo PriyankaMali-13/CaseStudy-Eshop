@@ -1,1 +1,29 @@
-<p>order works!</p>
+<div class="container-fluid p-3 m3">
+  <h1 class="display-4">Orders</h1>
+  <hr />
+  <table class="table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Payment Method</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.firstName }}</td>
+        <td>{{ order.address }}</td>
+        <td>{{ order.paymentMethod }}</td>
+        <td>{{ order.price }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>{{ order.quantity * order.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

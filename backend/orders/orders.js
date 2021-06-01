@@ -59,11 +59,11 @@ app.post("/add/orders", (req, res) => {
 	let lastName = req.body.lastName;
 	let address = req.body.address;
 
-	console.log(req.body.product);
+	console.log(req.body.products);
 
 	let carts;
 	try {
-		carts = JSON.parse(JSON.stringify(req.body.product));
+		carts = req.body.products;
 		if (!firstName.trim() || !lastName.trim() || !address.trim()) {
 			res.status(400);
 			res.json({
@@ -74,6 +74,7 @@ app.post("/add/orders", (req, res) => {
 			return;
 		}
 	} catch (error) {
+		console.log(error)
 		res.status(400);
 		if (!carts) {
 			res.json({
@@ -151,6 +152,7 @@ app.delete("/order/:id", (req, res) => {
 		});
 });
 
+//function to create order 
 function createOrder(req, productInfo, firstName, lastName, address) {
 	return new Order({
 		_id: mongoose.Types.ObjectId(),

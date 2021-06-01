@@ -78,20 +78,23 @@ export class CartComponent implements OnInit {
   //checkout
   checkOut(evnt: Event, form: HTMLFormElement) {
     evnt.preventDefault();
-    let firstName = (<HTMLInputElement>form.elements.namedItem('firstName')).value
+    let firstName = (<HTMLInputElement>form.elements.namedItem('firstName')).value;
     let lastName = (<HTMLInputElement>form.elements.namedItem('lastName')).value;
     let address = (<HTMLInputElement>form.elements.namedItem('address')).value;
 
     //creating variable of type OrderInfo (Interface in order service)
     let orderInfo: OrderInfo;
+
     //craeting array of productInfos of type ProductInfo (Interface in product service)
     //ProductInfo[] will basically contain price, id and quantity which we will get from cartitems
     let productInfos : ProductInfo[] = [];
+
     //Getting product from cartitems
     this.cartItems.forEach(e=>{
       productInfos.push({
         price : e.product.price,
         productId: e.product._id,
+        name : e.product.name,
         quantity: e.quantity
       })
     })
@@ -114,7 +117,7 @@ export class CartComponent implements OnInit {
         this.router.navigate(['/orders']);
       },
       error: (err) => {
-        console.log({ err: 'Cant place order' });
+        console.log({ err: 'Can not place order' });
       },
     });
 

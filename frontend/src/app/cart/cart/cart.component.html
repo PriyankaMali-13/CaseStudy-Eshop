@@ -119,7 +119,7 @@
       </div>
       <div class="col-md-7 border-right col-lg-8">
         <h4 class="mb-3">Billing address</h4>
-        <form class="needs-validation" novalidate #checkOutForm (submit)="checkOut($event, checkOutForm)" method="POST"  action='javascript:void(0);'>
+        <form  #checkOutForm (submit)="checkOut($event, checkOutForm)" method="POST"  action='javascript:void(0);'>
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">First name</label>
@@ -195,6 +195,17 @@
             <div class="form-check">
               <input
                 id="paypal"
+                name="paymentMethod"
+                type="radio"
+                class="form-check-input"
+                required
+                disabled
+              />
+              <label class="form-check-label" for="paypal">Stripe</label>
+            </div>
+            <div class="form-check">
+              <input
+                id="stripe"
                 name="paymentMethod"
                 type="radio"
                 class="form-check-input"
