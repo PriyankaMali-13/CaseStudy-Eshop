@@ -1,0 +1,25 @@
+<div class="container-fluid p-3 m3">
+  <h1 class="display-4">Products Available</h1>
+  <hr />
+  <table class="table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Payment Method</th>
+        <th>Quantity</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>COD</td>
+        <td>Avaliable at any quantity</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -84,6 +84,17 @@ router.post("/login", (req, res) => {
 	});
 });
 
+//get list of all users
+router.get("/users", (req, res) => {
+	User.find()
+		.then((users) => {
+			res.json(users);
+		})
+		.catch((err) => {
+			throw err;
+		});
+});
+
 module.exports = router;
 
 /*let payload = { subject: user._id };

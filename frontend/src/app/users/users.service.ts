@@ -11,11 +11,17 @@ import { Router } from '@angular/router';
 export class UsersService {
   private _registerUrl = 'http://localhost:3000/api/register'; //endpoint api for register
   private _loginUrl = 'http://localhost:3000/api/login';
+  private _getUsers = 'http://localhost:3000/api/users';
 
   constructor(private http: HttpClient, private _router: Router) {}
   registerUser(user: any) {
     return this.http.post<any>(this._registerUrl, user);
   }
+
+  getAllUsers(){
+    return this.http.get(this._getUsers);
+  }
+  
   /*the loginUser accepct the user object which is email and password & returns
   the response from the backebd api sends whenever it is available*/
   loginUser(user: any) {
@@ -29,7 +35,7 @@ export class UsersService {
   //logout method
   logoutUser() {
     localStorage.removeItem('token');
-    this._router.navigate(['/']); //we have used router to present home component after the user is logout
+    this._router.navigate(['/']); //we have used router to present home component after the user is loggedout
   }
 
   /*method that fetches the token value*/

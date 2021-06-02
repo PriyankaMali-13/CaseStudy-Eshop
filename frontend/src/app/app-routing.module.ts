@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { CartComponent } from './cart/cart/cart.component';
 import { CovidCareComponent } from './covid-care/covid-care.component';
 import { HomeComponent } from './home/home/home.component';
@@ -23,6 +28,17 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'covid', component: CovidCareComponent },
   { path: 'orders', component: OrderComponent },
+  {
+    path: 'admin',
+    component: AdminHomeComponent,
+    children: [
+      {path:'', redirectTo:'dashboard', pathMatch: 'full'},
+      {path: 'dashboard',component:AdminDashboardComponent},
+      { path: 'orders', component: AdminOrdersComponent },
+      { path: 'products', component: AdminProductsComponent },
+      { path: 'users', component:AdminUsersComponent },
+    ],
+  },
 ];
 
 @NgModule({
