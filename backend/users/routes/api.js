@@ -20,6 +20,31 @@ mongoose.connect(
 	}
 );
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *      userSchema:
+ *       type: object
+ *       required:
+ *         - email
+ *         - password
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the User
+ *         email:
+ *           type: string
+ *           description: The user unique email id
+ *         password:
+ *           type: string
+ *           description: The user password
+ *       example:
+ *         id: 1254gfg645
+ *         email: y@y.com
+ *         password: yyy
+ */
+
 //function to verify token
 function verifyToken(req, res, next) {
 	if (!req.headers.authorization) {
@@ -41,6 +66,30 @@ function verifyToken(req, res, next) {
 router.get("/", (req, res) => {
 	res.send("User API running ");
 });
+
+/**
+ * @swagger
+ * /api/register:
+ *   post:
+ *     summary: Create a new user
+ *     tags: [User]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/userSchema'
+ *     responses:
+ *       200:
+ *         description: The user was successfully created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/userSchema'
+ *       500:
+ *         description: Some server error
+ */
+
 // api for register user
 router.post("/register", (req, res) => {
 	let userData = req.body;
@@ -51,15 +100,38 @@ router.post("/register", (req, res) => {
 		} else {
 			/*1)after generating the user sccessfully 1st we need to generate payload
 			the payload s obj which will contaain user id
-		 2)now generate the token with a secretkey as u want in this case it is a string of "secretKey"
-		 3)send this token as an object
-		 4) do same for login api */
+			 2)now generate the token with a secretkey as u want in this case it is a string of "secretKey"
+		 	 3)send this token as an object
+			 4) do same for login api */
 			let payload = { subject: registeredUser._id };
 			let token = jwt.sign(payload, "secretKey");
 			res.status(200).send({ token });
 		}
 	});
 });
+
+/**
+ * @swagger
+ * /api/login:
+ *   post:
+ *     summary: Create a new user
+ *     tags: [User]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/userSchema'
+ *     responses:
+ *       200:
+ *         description: The user was successfully loggedin
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/userSchema'
+ *       500:
+ *         description: Some server error
+ */
 
 //api for login user
 router.post("/login", (req, res) => {
@@ -84,6 +156,25 @@ router.post("/login", (req, res) => {
 	});
 });
 
+
+
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     summary: Returns the list of all the users
+ *     tags: [User]
+ *     responses:
+ *       200:
+ *         description: The list of the users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/userSchema'
+ */
+
 //get list of all users
 router.get("/users", (req, res) => {
 	User.find()
@@ -95,6 +186,80 @@ router.get("/users", (req, res) => {
 		});
 });
 
+/**
+ * @swagger
+ * /api/user/{id}:
+ *   get:
+ *     summary: Get the user by id
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user id
+ *     responses:
+ *       200:
+ *         description: The user description by id
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/userSchema'
+ *       404:
+ *         description: The user was not found
+ */
+
+//get user by id
+router.get("/user/:id", (req, res) => {
+	User.findById(req.params.id)
+		.then((user) => {
+			// show product
+			if (user) {
+				res.json(user);
+			} else {
+				res.sendStatus(404);
+			}
+		})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
+
+/**
+ * @swagger
+ * /api/user/{id}:
+ *   delete:
+ *     summary: Remove the user by id
+ *     tags: [User]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user id
+ * 
+ *     responses:
+ *       200:
+ *         description: The user was deleted
+ *       404:
+ *         description: The user was not found
+ */
+//delete user
+router.delete("/user/:id", (req, res) => {
+	User.findOneAndDelete(req.params.id)
+		.then(() => {
+			res.send("User removed");
+		})
+		.catch((err) => {
+			if (err) {
+				throw err;
+			}
+		});
+});
 module.exports = router;
 
 /*let payload = { subject: user._id };

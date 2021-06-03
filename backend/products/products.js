@@ -54,6 +54,7 @@ app.get("/", (req, res) => {
 	res.send("A new product is created");
 });
  */
+
 //list all product
 app.get("/products", (req, res) => {
 	Product.find()
