@@ -35,6 +35,7 @@ Angular CLI - https://angular.io/cli</br>
 
 <h3>Order Microservice </h3>
 <p>Order Microservice port no : 7000</p>
+<p>Swagger api link for product microservice : http://localhost:7000/api-orders/ </p>
 
 
 
