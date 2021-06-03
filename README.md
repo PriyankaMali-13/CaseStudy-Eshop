@@ -28,6 +28,7 @@ Angular CLI - https://angular.io/cli</br>
 
 <h3>Product Microservice </h3>
 <p>Product Microservice port no : 4000</p>
+<p>Swagger api link for product microservice : http://localhost:4000/api-products/ </p>
 
 <h3>Cart Microservice </h3>
 <p>Cart Service is mannaged using local storage of browser</p>
