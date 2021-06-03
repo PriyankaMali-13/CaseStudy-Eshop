@@ -22,11 +22,20 @@ Angular CLI - https://angular.io/cli</br>
 
 <h4>Frontend - Using Angular port no - 4200</h4>
 
-<h4>All Microservices port nos:</h4>
+<h4>User Microservice </h4>
 
 <p>User Microservice port no : 3000</p>
+<p>Swagger api link for user microservice : http://localhost:3000/api-users/ </p>
+
+<h4>Product Microservice </h4>
+
 <p>Product Microservice port no : 4000</p>
+
+<h4>Cart Microservice </h4>
+
 <p>Cart Service is mannaged using local storage of browser</p>
+
+<h4>Order Microservice </h4>
 <p>Order Microservice port no : 7000</p>
 
 
