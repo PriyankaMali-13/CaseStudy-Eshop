@@ -23,10 +23,15 @@ const options = {
 	apis: ["./routes/*.js"],
 };
 
+/*initializing swaggerJsDoc - this will find the location specified in options and will 
+know where to parse the swaggerJsDoc*/
 const specs = swaggerJsDoc(options);
 
-
 const app = express();
+
+/*Define the app by passing swaggerUi.serve as a callback then we specify the spec
+that will build the UI */ 
+
 app.use("/api-users", swaggerUI.serve, swaggerUI.setup(specs));
 app.use(cors());
 //Creates an instance of a single Route for the given path

@@ -1,24 +1,23 @@
-<div class="container-fluid p-3 m3" style="width: 1200px !important;">
+<div class="container-fluid p-3 m3" style="width: 1200px !important">
   <h1 class="display-4">Products Available</h1>
   <hr />
   <table class="table">
     <thead>
       <tr>
-        <th>No</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Payment Method</th>
-        <th>Quantity</th>
-        
+        <th style="text-align: center">No</th>
+        <th style="text-align: center">Name</th>
+        <th style="text-align: center">Price</th>
+        <th style="text-align: center">Payment Method</th>
+        <th style="text-align: center">Quantity</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let product of products; index as i">
-        <td>{{ i + 1 }}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price }}</td>
-        <td>COD</td>
-        <td>Avaliable at any quantity</td>
+        <td style="text-align: center">{{ i + 1 }}</td>
+        <td style="text-align: center">{{ product.name }}</td>
+        <td style="text-align: center">{{ product.price }}</td>
+        <td style="text-align: center">COD</td>
+        <td style="text-align: center">Avaliable at any quantity</td>
       </tr>
     </tbody>
   </table>

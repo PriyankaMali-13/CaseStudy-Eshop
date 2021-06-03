@@ -4,25 +4,25 @@
   <table class="table">
     <thead>
       <tr>
-        <th>No</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Payment Method</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
+        <th style="text-align: center">No</th>
+        <th style="text-align: center">Name</th>
+        <th style="text-align: center">Address</th>
+        <th style="text-align: center">Payment Method</th>
+        <th style="text-align: center">Price</th>
+        <th style="text-align: center">Quantity</th>
+        <th style="text-align: center">Total</th>
         
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let order of orders; index as i">
-        <td>{{ i + 1 }}</td>
-        <td>{{ order.firstName }}</td>
-        <td>{{ order.address }}</td>
-        <td>{{ order.paymentMethod }}</td>
-        <td>{{ order.price }}</td>
-        <td>{{ order.quantity }}</td>
-        <td>{{ order.quantity * order.price }}</td>
+         <td style="text-align: center">{{ i + 1 }}</td>
+        <td style="text-align: center">{{ order.firstName }}</td>
+        <td style="text-align: center">{{ order.address }}</td>
+        <td style="text-align: center">{{ order.paymentMethod }}</td>
+        <td style="text-align: center">{{ order.price }}</td>
+        <td style="text-align: center">{{ order.quantity }}</td>
+        <td style="text-align: center">{{ order.quantity * order.price }}</td>
       </tr>
     </tbody>
   </table>
