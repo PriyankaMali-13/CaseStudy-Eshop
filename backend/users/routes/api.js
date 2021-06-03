@@ -20,6 +20,8 @@ mongoose.connect(
 	}
 );
 
+//creating schema for swagger api
+
 /**
  * @swagger
  * components:
@@ -67,6 +69,8 @@ router.get("/", (req, res) => {
 	res.send("User API running ");
 });
 
+//swagger code to create new user(register)
+
 /**
  * @swagger
  * /api/register:
@@ -109,6 +113,9 @@ router.post("/register", (req, res) => {
 		}
 	});
 });
+
+
+//swagger code to login user
 
 /**
  * @swagger
@@ -156,7 +163,7 @@ router.post("/login", (req, res) => {
 	});
 });
 
-
+//swagger code to get all the users
 
 /**
  * @swagger
@@ -185,6 +192,8 @@ router.get("/users", (req, res) => {
 			throw err;
 		});
 });
+
+//swagger code to get user by id
 
 /**
  * @swagger
@@ -227,6 +236,9 @@ router.get("/user/:id", (req, res) => {
 			}
 		});
 });
+
+
+//swagger code to delete user by id
 
 /**
  * @swagger
