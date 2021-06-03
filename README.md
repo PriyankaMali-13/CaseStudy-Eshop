@@ -1,4 +1,4 @@
-# Case-Study-Eshop
+# Eshop Website
 
 <h1>Microservices Based MEAN Stack E-Commerce Website</h1>
 
