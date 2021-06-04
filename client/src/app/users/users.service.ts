@@ -21,16 +21,20 @@ export class UsersService {
   getAllUsers(){
     return this.http.get(this._getUsers);
   }
+
   
   /*the loginUser accepct the user object which is email and password & returns
   the response from the backebd api sends whenever it is available*/
   loginUser(user: any) {
     return this.http.post<any>(this._loginUrl, user);
   }
+
+  
   /*this method is used to chk whether user is valid or not -- for route gaurd */
   loggedIn() {
     return !!localStorage.getItem('token'); //it will return true false whether token exits in browser or not
   }
+
 
   //logout method
   logoutUser() {
