@@ -1,6 +1,7 @@
-//Load express
+//Load express server
 const express = require("express");
-const app = express(); // creating the instance of express
+// creating the instance of express
+const app = express(); 
 const cors = require("cors");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
@@ -47,8 +48,16 @@ const options = {
 	apis: ["products.js"],
 };
 
+
+/*initializing swaggerJsDoc - this will find the location specified in options and will 
+know where to parse the swaggerJsDoc*/
 const specs = swaggerJsDoc(options);
+
+
+/*Define the app by passing swaggerUi.serve as a callback then we specify the spec
+that will build the UI */ 
 app.use("/api-products", swaggerUI.serve, swaggerUI.setup(specs));
+
 
 app.get("/", (req, res) => {
 	res.send("Product Service up and running");

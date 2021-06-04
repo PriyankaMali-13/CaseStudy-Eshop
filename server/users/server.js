@@ -33,7 +33,9 @@ const app = express();
 that will build the UI */ 
 
 app.use("/api-users", swaggerUI.serve, swaggerUI.setup(specs));
+
 app.use(cors());
+
 //Creates an instance of a single Route for the given path
 const api = require("./routes/api");
 

@@ -15,7 +15,7 @@ const userSchema = new Schema({
 });
 
 
-//hash the password before saving the data(thats y i have used pre method)
+//use pre method to hash the password before saving the data into db
 userSchema.pre("save", async function (next) {
 	const salt = await bcrypt.genSalt();
 	this.password = await bcrypt.hash(this.password, salt);
