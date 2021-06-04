@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  //declaring the empty object to bind the input of form to this empty object
   loginUserData: any = {};
 
   constructor(private _user: UsersService, private _router: Router) {}

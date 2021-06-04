@@ -9,34 +9,35 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UsersService {
-  private _registerUrl = 'http://localhost:3000/api/register'; //endpoint api for register
+  //endpoint api for register
+  private _registerUrl = 'http://localhost:3000/api/register';
   private _loginUrl = 'http://localhost:3000/api/login';
   private _getUsers = 'http://localhost:3000/api/users';
 
   constructor(private http: HttpClient, private _router: Router) {}
+
+  /*the registerUser accepct the user object which is email and password & returns
+  the response that the backend api sends whenever it is available*/
   registerUser(user: any) {
     return this.http.post<any>(this._registerUrl, user);
   }
 
-  getAllUsers(){
+  getAllUsers() {
     return this.http.get(this._getUsers);
   }
 
-  
   /*the loginUser accepct the user object which is email and password & returns
-  the response from the backebd api sends whenever it is available*/
+  the response that the backend api sends whenever it is available*/
   loginUser(user: any) {
     return this.http.post<any>(this._loginUrl, user);
   }
 
-  
-  /*this method is used to chk whether user is valid or not -- for route gaurd */
+  /*this method is used to chk whether user is valid or not -- used in the user.gaurd.ts(route gaurd)*/
   loggedIn() {
-    return !!localStorage.getItem('token'); //it will return true false whether token exits in browser or not
+    return !!localStorage.getItem('token'); //!! is used bcoz it will return boolean value whether token exits in browser or not
   }
 
-
-  //logout method
+  //logout the user when user clicks on logout button
   logoutUser() {
     localStorage.removeItem('token');
     this._router.navigate(['/']); //we have used router to present home component after the user is loggedout

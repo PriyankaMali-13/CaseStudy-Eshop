@@ -52,16 +52,19 @@ function verifyToken(req, res, next) {
 	if (!req.headers.authorization) {
 		return res.status(401).send("Unauthorized request");
 	}
-	let token = req.headers.authorization.split(" ")[1]; //splits into array so that the barer string stored into 0th indexand actual token into 1st index
+	//splits into array so that the barer string stored into 0th indexd and actual token into 1st index
+	let token = req.headers.authorization.split(" ")[1];
 	if (token === "null") {
 		return res.status(401).send("Unauthorized request");
 	}
-	//to verify the token
+	//verify the token and returens the decoded token
 	let payload = jwt.verify(token, "secretKey");
 	if (!payload) {
 		return res.status(401).send("Unauthorized request");
 	}
+
 	req.userId = payload.subject;
+	//passon the execution to next event handler
 	next();
 }
 //checking api
@@ -103,17 +106,18 @@ router.post("/register", (req, res) => {
 			console.log(err);
 		} else {
 			/*1)after generating the user sccessfully 1st we need to generate payload
-			the payload s obj which will contaain user id
+			 the payload s obj which will contaain user id
 			 2)now generate the token with a secretkey as u want in this case it is a string of "secretKey"
 		 	 3)send this token as an object
 			 4) do same for login api */
+
+			//creating payload which is an object contain registered user id
 			let payload = { subject: registeredUser._id };
 			let token = jwt.sign(payload, "secretKey");
 			res.status(200).send({ token });
 		}
 	});
 });
-
 
 //swagger code to login user
 
@@ -142,7 +146,7 @@ router.post("/register", (req, res) => {
 
 //api for login user
 router.post("/login", (req, res) => {
-	//let userData = req.body; //extract user data
+	//let userData = req.body; //extract user data from body
 	//check user exits in the db or not
 
 	const email = req.body.email;
@@ -150,10 +154,13 @@ router.post("/login", (req, res) => {
 
 	User.findOne({ email }).then((user) => {
 		if (!user) return res.status(400);
+		//bcypt is used to hash password and genetarte salt ang hashed password
 		bcrypt.compare(password, user.password, (err, data) => {
 			if (err) throw err;
 			if (data) {
+				//creating payload with key subject and value as userid
 				let payload = { subject: user._id };
+				//generating token using sign method
 				let token = jwt.sign(payload, "secretKey");
 				res.status(200).send({ token });
 			} else {
@@ -221,9 +228,9 @@ router.get("/users", (req, res) => {
 
 //get user by id
 router.get("/user/:id", (req, res) => {
+	//req.params property is an object containing properties mapped to the named route “parameters”
 	User.findById(req.params.id)
 		.then((user) => {
-			// show product
 			if (user) {
 				res.json(user);
 			} else {
@@ -236,7 +243,6 @@ router.get("/user/:id", (req, res) => {
 			}
 		});
 });
-
 
 //swagger code to delete user by id
 
@@ -253,7 +259,7 @@ router.get("/user/:id", (req, res) => {
  *           type: string
  *         required: true
  *         description: The user id
- * 
+ *
  *     responses:
  *       200:
  *         description: The user was deleted
