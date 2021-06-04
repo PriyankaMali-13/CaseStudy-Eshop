@@ -16,7 +16,7 @@ import { UserGuard } from './users/user.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
+{ path: 'home', component: HomeComponent },
   { path: 'products', component: ProductComponent },
   /*When we try to navigate to cart the canActivate is ececuted
     if it return => true == navigation is allowed 
@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'orders', component: OrderComponent },
   {
     path: 'admin',
-    component: AdminHomeComponent,
+    component: AdminHomeComponent,canActivate: [UserGuard] ,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminDashboardComponent },
