@@ -194,6 +194,7 @@ router.get("/users", (req, res) => {
 	User.find()
 		.then((users) => {
 			res.json(users);
+			res.status(201);
 		})
 		.catch((err) => {
 			throw err;

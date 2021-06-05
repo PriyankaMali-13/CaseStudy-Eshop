@@ -1,0 +1,21 @@
+{
+	"name": "orders",
+	"version": "1.0.0",
+	"description": "",
+	"main": "orders.js",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"test": "mocha --watch --recursive --exit"
+	},
+	"keywords": [],
+	"author": "Priyanka",
+	"license": "ISC",
+	"dependencies": {
+		"chai": "^4.3.4",
+		"mocha": "^8.4.0",
+		"mockgoose": "^8.0.4",
+		"supertest": "^6.1.3"
+	}
+}
