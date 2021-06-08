@@ -24,13 +24,6 @@ export class OrderService {
 }
 
 
-
-
-
-
-
-
-
 export interface OrderInfo {
   firstName: string;
   lastName: string;

@@ -18,6 +18,7 @@ export class ProductService {
       })
     )
   } */
+  
   getAllProducts() {
     return this.http.get<any>(this.getAllProductUrl);
   }

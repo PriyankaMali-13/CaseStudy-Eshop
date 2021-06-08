@@ -119,7 +119,6 @@ app.get("/", (req, res) => {
 
 //create product
 app.post("/product", (req, res) => {
-	
 	var newProduct = {
 		name: req.body.name,
 		url: req.body.url,

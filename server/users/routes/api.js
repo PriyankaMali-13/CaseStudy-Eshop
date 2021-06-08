@@ -272,10 +272,13 @@ router.delete("/user/:id", (req, res) => {
 	User.findOneAndDelete(req.params.id)
 		.then(() => {
 			res.send("User removed");
+			res.status(201);
+			
 		})
 		.catch((err) => {
 			if (err) {
 				throw err;
+				res.status(401);
 			}
 		});
 });

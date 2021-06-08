@@ -8,6 +8,8 @@ import { Product } from 'src/app/models/products';
   styleUrls: ['./product-card.component.css'],
 })
 export class ProductCardComponent implements OnInit {
+  /*Here we are geeting input from parent component which is store component and bind 
+  the data in input('product') in store component*/
   @Input('product') product!: Product;
   quantity: number = 0;
 
@@ -21,8 +23,10 @@ export class ProductCardComponent implements OnInit {
       },
     });
   }
+  /*once the button of add to cart is clicked the product will be added to cart*/
   addToCart() {
     console.log(this.product);
+    //calling the method to add product to cart from cart service
     this.cartService.addToCart(this.product);
   }
 

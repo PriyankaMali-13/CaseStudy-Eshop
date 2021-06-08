@@ -43,10 +43,12 @@ export class CartComponent implements OnInit {
         this.cartItems = [];
         let observables = [];
         for (let id in cart) {
-          console.log(id);
-          console.log(cart[id]);
+          //console.log(id);
+          //console.log(cart[id]);
           observables.push(
             this.productService.getProductById(id).pipe(
+              //earlier I was getting array of products but i wanted the products inside cart with quantity 
+              //so to change the type of result u want use map operator
               map((product) => {
                 this.total += product.price * cart[id];
                 let item: Cartitem = {
@@ -58,6 +60,7 @@ export class CartComponent implements OnInit {
             )
           );
         }
+        //it will join all the observables at last(insted of taking products one by one)
         forkJoin(observables).subscribe({
           next: (cartItems: Cartitem[]) => {
             this.cartItems = cartItems;
@@ -115,9 +118,11 @@ export class CartComponent implements OnInit {
         this.modalRef.hide();
         this.cartService.clearCart();
         this.router.navigate(['/orders']);
+        alert('Your order has been successfully placed');
       },
       error: (err) => {
         console.log({ err: 'Can not place order' });
+        alert('Can not place order');
       },
     });
 

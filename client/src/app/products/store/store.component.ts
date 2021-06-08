@@ -8,7 +8,8 @@ import { Product } from 'src/app/models/products';
   styleUrls: ['./store.component.css'],
 })
 export class StoreComponent implements OnInit {
- products: Product[] = [];
+  //I will get product array from product service so to collect it create products array ans assign an empty array
+  products: Product[] = [];
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
@@ -19,22 +20,11 @@ export class StoreComponent implements OnInit {
     this.productService.getAllProducts().subscribe({
       next: (products) => {
         this.products = products;
-        console.log(this.products);
+        //console.log(this.products);
       },
       error: (error) => {
         console.log(error);
       },
     });
   }
-  /* collectProducts() {
-    this.productService.getAllProducts().subscribe({
-      next: (result) => {
-        //this.products = products;
-        console.log(result);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-  } */
 }
